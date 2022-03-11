@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<title>Cloud1 webpage</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+h1,h2,h3,h4,h5,h6 {font-family: "Oswald"}
+body {font-family: "Open Sans"}
+</style>
+<body class="w3-light-grey">
+<!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1600px">
+
+  <!-- Header -->
+  <header class="w3-container w3-center w3-padding-48 w3-white">
+    <h1 class="w3-xxxlarge"><b>Hassan Kazemi Tehrani</b></h1>
+    <h6>HW1 9629041</h6>
+  </header>
+  <!-- Grid -->
+  <div class="w3-row w3-padding w3-border">
+    
+    <!-- Blog entries -->
+    <div class="w3-col">
+    
+    
+      <!-- Blog entry -->
+      {% for post in posts %}
+      <div class="w3-container w3-white w3-margin w3-padding-large">
+        <div class="w3-center">
+          <h3>{{ post.moviename }}</h3>
+          <h5>Director: <span class="w3-opacity">{{post.directorname}}</span></h5>
+        </div>
+
+        <div class="w3-justify">
+          <img src="{{post.posterurl}}" alt="image is not available" style="max-height: 500px; width: 100%;" class="w3-padding-16">
+          <a class="w3-button w3-black" href="/comments/selectlang/{{post.id}}/">Show Comments</a>
+        </div>
+
+     
+      
+        <div class="w3-container" id="contact" style="margin-top:75px">
+          <h1 class="w3-xxxlarge w3-text-red"><b>Comment.</b></h1>
+          <p>Upload a Voice comment in the section below</p>
+          <form action="/uploadcomment/{{post.id}}/" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <div class="w3-section">
+              <input class="w3-input w3-border" type="text" name="name" required>
+              <label>upload file</label>
+              <input class="w3-input w3-border" type="file" name="voice" accept="audio/wav" required>
+            </div>
+            <button type="submit" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom">Submit your comment</button>
+          </form>  
+        </div>
+      </div>
+
+      {% endfor %}
+    <!-- END BLOG ENTRIES -->
+    </div>
+<!-- Contact -->
+  
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey" style="padding:32px">
+  <a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">Hassan Kazemi Tehrani</a></p>
+</footer>
+
+</body>
+</html>
