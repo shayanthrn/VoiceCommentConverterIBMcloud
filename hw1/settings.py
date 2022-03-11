@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-&krs2$dm0+pnmib$&5!5w@4!^4%7l=n!$*fdg&ip+1m3b9c7hy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['shayanthrn.pythonanywhere.com']
 
 
 # Application definition
@@ -76,11 +76,14 @@ WSGI_APPLICATION = 'hw1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE'  : 'django.db.backends.mysql', # <-- UPDATED line
+        'NAME'    : 'shayanthrn$hw1db',                 # <-- UPDATED line
+        'USER'    : 'shayanthrn',                     # <-- UPDATED line
+        'PASSWORD': 'test123456789',              # <-- UPDATED line
+        'HOST'    : 'shayanthrn.mysql.pythonanywhere-services.com',                # <-- UPDATED line
+        'PORT'    : '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
